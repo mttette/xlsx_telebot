@@ -1,7 +1,6 @@
 from pyrogram import Client,filters,types
 import sheet
 
-
 API_ID = "17156186"
 API_HASH = "c2957f899e43014b76d8df20574764c3"
 BOT_TOKEN = "5901972668:AAHj1SNZ0nTDvOEAFwtqGZtOHH2s7EFQ7Z0"
@@ -20,9 +19,8 @@ def help(client, message):
     welcome admin , here is a list of the commands that u can do:
 
     /set_welcome_txt -- to set the welcome text
-    /set_qustion_txt to set qustion text 
+    /set_error_txt to set error text 
     /upload_xlsx to upload the new xlsx file 
-    /dev to contact with the devolopers
 
     """)
 
@@ -40,9 +38,9 @@ app.run()
 
 #TODO 
 
-# make command(help) that show admin commands 
-# make an admin page that let the admin change
+# (done) make command(help) that show admin commands
+# (done)make an admin page that let the admin change
 # 1.the file 
 # 2.the welcome message
 # 3.the qustion? message
-# 4.the erorr message 
+# 4.the error message 
