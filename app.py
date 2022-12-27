@@ -11,7 +11,7 @@ app = Client("my_bot", api_id=API_ID, api_hash=API_HASH,bot_token=BOT_TOKEN)
 
 @app.on_message(filters.command("start"))
 def start(client, message):
-    message.reply_text("اهلا وسهلا ما اسمك الكامل؟")
+    message.reply_text("اهلا وسهلا, ما هو اسمك الكامل(الثلاثي)؟")
 
 @app.on_message(filters.text)
 def handle_message(client, message):

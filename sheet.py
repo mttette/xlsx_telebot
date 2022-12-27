@@ -31,5 +31,5 @@ def search_name(name, names=get_names(), sheet=get_sheet("files.xlsx")):
                          " هي "+str(sheet.cell_value(n+1, c)))
             return reply
 
-    reply = ("آسف ، اسمك ليس في القائمة")
+    reply = ("..عذرا ، اسمك ليس في القائمة")
     return reply
