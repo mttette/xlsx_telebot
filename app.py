@@ -1,4 +1,4 @@
-from pyrogram import Client,filters,types
+from pyrogram import Client,filters
 import sheet
 
 API_ID = "17156186"
@@ -24,14 +24,33 @@ def help(client, message):
 
     """)
 
+current_state = ""
+@app.on_message(filters.chat(admin_id) & filters.command("upload_xlsx"))
+def upload_xlsx(client, message):
+    global current_state
+    message.reply_text("send the file please")
+    current_state = "waiting"
+@app.on_message(filters.chat(admin_id) & filters.document)
+def handle_file(client,message):
+    global current_state
+    if current_state == "waiting":
+        if message.document.file_name.endswith(".xlsx"):
+            app.download_media(message.document.file_id, file_name="file.xlsx")
+            message.reply_text("done!")
+        else:
+            message.reply_text("the file format must be 'xlsx'!")
+        current_state = ""
+        return sheet.get_names_from_sheet("./downloads/file.xlsx")
+
+
+
 @app.on_message(filters.text)
 def handle_message(client, message):
-    message.reply_text(sheet.search_name(message.text))
+    message.reply_text(sheet.search_name(message.text,
+    names=sheet.get_names_from_sheet()["names"],
+    sheet=sheet.get_names_from_sheet()["sheet"]
+    ))
 
-# @app.on_message(filters.document)
-# def test(client,message):
-#     types.Document().file_name
-#     message.reply_text("good job")
     
 app.run()
 
