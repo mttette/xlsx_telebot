@@ -11,24 +11,29 @@ app = Client("my_bot", api_id=API_ID, api_hash=API_HASH,bot_token=BOT_TOKEN)
 
 @app.on_message(filters.command("start"))
 def start(client, message):
-    message.reply_text("اهلا وسهلا, ما هو اسمك الكامل(الثلاثي)؟")
+    message.reply_text("""
+    اهلا وسهلا بك في بوت المعاملات 
+
+    ما هو اسمك الثلاثي ؟
+    """)
 
 @app.on_message(filters.chat(admin_id) & filters.command("help"))
 def help(client, message):
     message.reply_text("""
-    welcome admin , here is a list of the commands that u can do:
+    اهلا بك عزيزي الادمن  🫡
 
-    /set_welcome_txt -- to set the welcome text
-    /set_error_txt to set error text 
-    /upload_xlsx to upload the new xlsx file 
+    📌  اضغط /file لتغير ملف المعاملات  
+    📌  اضغط /welcome لتغير الرسالة الترحيبية  
+    📌  اضغط /error لتغير رسالة الخطأ
 
+    .
     """)
 
 current_state = ""
-@app.on_message(filters.chat(admin_id) & filters.command("upload_xlsx"))
+@app.on_message(filters.chat(admin_id) & filters.command("file"))
 def upload_xlsx(client, message):
     global current_state
-    message.reply_text("send the file please")
+    message.reply_text("الرجاء ارسال الفايل الجديد")
     current_state = "waiting"
 @app.on_message(filters.chat(admin_id) & filters.document)
 def handle_file(client,message):
@@ -36,9 +41,9 @@ def handle_file(client,message):
     if current_state == "waiting":
         if message.document.file_name.endswith(".xlsx"):
             app.download_media(message.document.file_id, file_name="file.xlsx")
-            message.reply_text("done!")
+            message.reply_text("!تم")
         else:
-            message.reply_text("the file format must be 'xlsx'!")
+            message.reply_text("(xlsx) يجب ان تكون صيغه الفايل")
         current_state = ""
         return sheet.get_names_from_sheet("./downloads/file.xlsx")
 
