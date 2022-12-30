@@ -55,7 +55,7 @@ def edit_welcome(client,message):
 
 
 
-@app.on_message(filters.chat(ADMIN_ID & filters.command("error")))#when the admin want to change the error message
+@app.on_message(filters.chat(ADMIN_ID) & filters.command("error"))#when the admin want to change the error message
 def edit_error(client,message):
     global state
     message.reply_text("الرجاء ارسال رسالة الخطأ الجديدة")
