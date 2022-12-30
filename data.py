@@ -1,11 +1,5 @@
 import json
 
-
-#TODO 
-# save data function
-# load data function
-# data not var pls
-
 text_messages = {
     "welcome" : "",
     "error":"",
