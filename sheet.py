@@ -1,6 +1,7 @@
 import xlrd
 
 
+
 def get_names_from_sheet(file_name="./downloads/file.xlsx"):
     wb = xlrd.open_workbook(file_name)
     sheets = wb.sheet_names()
@@ -16,7 +17,7 @@ def get_names_from_sheet(file_name="./downloads/file.xlsx"):
         'sheet':sheet,
     }
 
-def search_name(name, names, sheet):
+def search_name(name, names, sheet,error_reply):
     """
     get name info
     ---
@@ -28,5 +29,5 @@ def search_name(name, names, sheet):
                 reply = (str(sheet.cell_value(0, c)) +" : "+str(sheet.cell_value(n+1, c)))
             return reply
 
-    reply = ("..عذرا ، اسمك ليس في القائمة")
+    reply = error_reply
     return reply
